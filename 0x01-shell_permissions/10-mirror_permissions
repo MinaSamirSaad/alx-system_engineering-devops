@@ -1,0 +1,2 @@
+#!/bit/bash
+chmod --reference=olleh hello
