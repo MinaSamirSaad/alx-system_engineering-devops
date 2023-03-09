@@ -1,2 +1,2 @@
 #!/bin/bash
-cp [![../*.html]].html ..
+cp -u *.html ..
