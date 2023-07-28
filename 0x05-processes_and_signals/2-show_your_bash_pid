@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#  Bash script that displays a list of currently bash running processes
+ps auxf | awk '{if($12 == "bash"){print}}'
