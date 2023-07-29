@@ -21,9 +21,7 @@
 SCRIPT_PATH="./manage_my_process" 
 
 start_process() {
-    if [ -f /var/run/my_process.pid ]; then
-        echo "manage_my_process is already running."
-    else
+    if [ ! -f /var/run/my_process.pid ]; then
         $SCRIPT_PATH &
         echo $! > /var/run/my_process.pid
         echo "manage_my_process started"
@@ -35,8 +33,6 @@ stop_process() {
     kill "$PID"
     rm /var/run/my_process.pid
     echo "manage_my_process stopped"
-    else
-        echo "manage_my_process is not running."
     fi
 }
 restart_process() {
