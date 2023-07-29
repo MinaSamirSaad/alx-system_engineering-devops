@@ -36,8 +36,13 @@ stop_process() {
     fi
 }
 restart_process() {
-    stop_process
-    start_process
+    if [ -f /var/run/my_process.pid ]; then
+        PID=$(cat /var/run/my_process.pid)
+        kill "$PID"
+        rm  /var/run/my_process.pid
+    fi
+     $SCRIPT_PATH &
+    echo $! > /var/run/my_process.pid
     echo "manage_my_process restarted"
 }
 case "$1" in
