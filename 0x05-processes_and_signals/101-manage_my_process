@@ -41,7 +41,7 @@ restart_process() {
         kill "$PID"
         rm  /var/run/my_process.pid
     fi
-     $SCRIPT_PATH &
+    $SCRIPT_PATH &
     echo $! > /var/run/my_process.pid
     echo "manage_my_process restarted"
 }
@@ -56,7 +56,7 @@ case "$1" in
         restart_process
         ;;
     *)
-        echo "Usage: $0 {start|stop|restart}"
+        echo "Usage: manage_my_process {start|stop|restart}"
         exit 1
         ;;
 esac
