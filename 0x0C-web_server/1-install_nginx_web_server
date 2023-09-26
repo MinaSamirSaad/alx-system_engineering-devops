@@ -1,0 +1,36 @@
+#!/bin/bash
+#script that Install nginx web server
+
+# Update package lists and install nginx
+apt-get update
+apt-get install -y nginx
+
+# Make sure nginx is running
+service nginx start
+
+# Configure nginx to listen on port 80
+echo "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html;
+
+        server_name _;
+
+        location / {
+                add_header Cache-Control no-cache;
+                add_header Pragma no-cache;
+                add_header Expires 0;
+                try_files $uri $uri/ =404;
+                root /var/www/html;
+                index index.html;
+        }
+
+}" > /etc/nginx/sites-available/default
+
+# Create the default index.html file with "Hello World!"
+echo "Hello World!" > /var/www/html/index.html
+
+# Restart nginx to apply changes
+service nginx restart
