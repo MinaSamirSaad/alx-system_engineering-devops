@@ -1,4 +1,5 @@
 # Install flask using pip3
+# ensure it is of version 2.1.0
 
 package { 'python3-pip':
     ensure  => present
