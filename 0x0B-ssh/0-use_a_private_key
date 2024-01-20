@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # This script will connect to the server using a private key
-private_key="~/.ssh/school"
+server_address="107.23.61.147"
+private_key_path="~/.ssh/school"
 username="ubuntu"
-server_ip="107.23.61.147"
-ssh_command="ssh -i $private_key $username@$server_ip"
-$ssh_command
+ssh -i "$private_key_path" "$username@$server_address"
