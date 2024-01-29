@@ -8,4 +8,4 @@ sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.c
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
 sed -i '/server_name _;/a error_page 404 /custom_404.html;\nlocation = /custom_404.html {\nroot /var/www/html;\ninternal;\n}' /etc/nginx/sites-available/default
 sed -i "/index index.html index.htm index.nginx-debian.html;/a add_header X-Served-By $(cat /etc/hostname);" /etc/nginx/sites-enabled/default
-systemctl start nginx
+service nginx start
