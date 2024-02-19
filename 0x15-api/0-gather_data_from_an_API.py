@@ -5,15 +5,15 @@ tasks and total number of tasks from an API
 '''
 
 from sys import argv
-import requests
+from requests import get
 
 
 if __name__ == "__main__":
     tasksURL = f'https://jsonplaceholder.typicode.com/todos?userId={argv[1]}'
     userURL = f'https://jsonplaceholder.typicode.com/users/{argv[1]}'
-    tasks = requests.get(tasksURL, timeout=5)
+    tasks = get(tasksURL, timeout=5)
     tasks = tasks.json()
-    user = requests.get(userURL, timeout=5)
+    user = get(userURL, timeout=5)
     user = user.json()
 
     completed = []
