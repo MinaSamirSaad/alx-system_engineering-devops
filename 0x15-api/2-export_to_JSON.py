@@ -18,12 +18,12 @@ if __name__ == "__main__":
     tasks = tasks.json()
     user = get(userURL, timeout=5)
     user = user.json()
+    data = []
 
     with open(f"{argv[1]}.json", 'w', encoding='utf-8') as jsonFile:
-        for task in range(len(tasks)):
-            jsonFile.write(json.dumps({argv[1]: [{
-                "task": tasks[task].get('title'),
-                "completed": tasks[task].get('completed'),
-                "username": user.get('username')}]}))
-            if task < len(tasks) - 1:
-                jsonFile.write(", ")
+        for task in tasks:
+            data.append({
+                "task": task.get('title'),
+                "completed": task.get('completed'),
+                "username": user.get('username')})
+        json.dump({argv[1]: data}, jsonFile)
