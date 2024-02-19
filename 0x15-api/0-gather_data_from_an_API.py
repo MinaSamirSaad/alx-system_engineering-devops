@@ -4,11 +4,13 @@ A script that gathers employee name completed
 tasks and total number of tasks from an API
 '''
 
-from sys import argv
-from requests import get
-
-
 if __name__ == "__main__":
+    from sys import argv
+    from requests import get
+
+    if len(argv) < 2 or not argv[1].isdigit():
+        exit()
+
     tasksURL = f'https://jsonplaceholder.typicode.com/todos?userId={argv[1]}'
     userURL = f'https://jsonplaceholder.typicode.com/users/{argv[1]}'
     tasks = get(tasksURL, timeout=5)
