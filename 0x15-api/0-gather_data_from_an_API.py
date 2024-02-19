@@ -5,8 +5,8 @@ tasks and total number of tasks from an API
 '''
 
 if __name__ == "__main__":
-    from sys import argv
     from requests import get
+    from sys import argv
 
     if len(argv) < 2 or not argv[1].isdigit():
         exit()
