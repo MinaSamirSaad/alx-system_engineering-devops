@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Gather data from an API"""
+'''A script that gathers employee name completed
+tasks and total number of tasks from an API
+'''
 from sys import argv
 import requests
 tasksURL = f'https://jsonplaceholder.typicode.com/todos?userId={argv[1]}'
