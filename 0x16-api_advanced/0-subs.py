@@ -1,24 +1,25 @@
 #!/usr/bin/python3
-"""AdvancedAPI"""
+"""
+    quering the Reddit API
+"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Returns the number of suscribers"""
-    base_url = 'https://www.reddit.com'
-    query = 'r/{}/about.json'.format(subreddit)
-    headers = {
-        "User-Agent": "random user"
-    }
-    req = requests.get(
-        url='{}/{}'.format(base_url, query),
-        headers=headers,
-        allow_redirects=False
-    )
-    if req.status_code >= 300:
+    """
+        Function that queries the Reddit API and returns the number
+        of subscribers.
+        @subreddit: suscriptors
+    """
+    url = "https://api.reddit.com/r/{}/about".format(subreddit)
+    header = {'User-Agent': 'CustomClient/1.0'}
+    request = requests.get(url, headers=header, allow_redirects=False)
+
+    if request.status_code != 200:
         return 0
-    try:
-        res = req.json().get('data', None).get('subscribers', None)
-        return res if res else 0
-    except Exception as e:
+    jreq = request.json()
+
+    if 'data' in jreq:
+        return jreq.get("data").get("subscribers")
+    else:
         return 0
